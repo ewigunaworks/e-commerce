@@ -284,21 +284,36 @@ const deleteProduct = {
             SELECT * FROM products
             WHERE id = ${id}
         `
-        const deleteDetail = await h.sql`
-            DELETE FROM product_details pd
-            WHERE pd.product_number = ${checkProduct.product_number}
-        `
 
-        const deleteProduct = await h.sql`
-            DELETE FROM products p
-            WHERE p.id = ${id}
-        `
-        const result = {
-            status: true,
-            message: 'product successfully deleted',
-            data: {}
+        if(checkProduct[0]) {
+            await h.sql`
+                DELETE FROM product_details pd
+                WHERE pd.product_number = ${checkProduct.product_number}
+            `
+
+            await h.sql`
+                DELETE FROM transactions
+                WHERE transactions.product_id = ${id}
+            `
+
+            await h.sql`
+                DELETE FROM products p
+                WHERE p.id = ${id}
+            `
+            const result = {
+                status: true,
+                message: 'product successfully deleted',
+                data: {}
+            }
+            return result
+        } else {
+            const result = {
+                status: false,
+                message: 'product not found',
+                data: {}
+            }
+            return result
         }
-        return result
       } catch ( err ) {
         const result = {
             status: false,
