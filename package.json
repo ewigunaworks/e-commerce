@@ -1,0 +1,23 @@
+{
+  "name": "e-commerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/wreck": "^17.1.0",
+    "dotenv": "^10.0.0",
+    "js2xmlparser": "^4.0.1",
+    "nodemon": "^2.0.12",
+    "postgres": "^1.0.2",
+    "xml2js": "^0.4.23",
+    "xml2json": "^0.12.0"
+  }
+}
